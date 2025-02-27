@@ -1,3 +1,1 @@
-# crypto
 
-![CRYPTO](/cover.PNG)
