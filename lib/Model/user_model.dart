@@ -1,3 +1,7 @@
+import 'dart:developer';
+
+import 'package:crypto_app/Model/portfolio_model.dart';
+
 class UserModel {
   String? userId;
   String? userName;
@@ -14,6 +18,12 @@ class UserModel {
   double? todayLoss;
   double? overallGainOrLoss;
   String? mobileNumber;
+  double? limitValue;
+  double? positionValue;
+  double? totalProfit;
+  double? totalLoss;
+  String? userAadharNumber;
+  List<PortfolioModel>? portfolioList;
 
   UserModel({
     this.userId,
@@ -31,6 +41,12 @@ class UserModel {
     this.todayLoss,
     this.overallGainOrLoss,
     this.mobileNumber,
+    this.limitValue,
+    this.positionValue,
+    this.totalProfit,
+    this.totalLoss,
+    this.userAadharNumber,
+    this.portfolioList,
   });
 
   UserModel.fromJson(Map<String,dynamic> json){
@@ -49,6 +65,19 @@ class UserModel {
     todayLoss = (json['todayLoss']as num).toDouble();
     overallGainOrLoss = (json['overallGainOrLoss']as num).toDouble();
     mobileNumber = json['mobileNumber'];
+    limitValue = (json['limit_value']as num).toDouble();
+    positionValue = (json['position_value']as num).toDouble();
+    totalProfit = (json['total_profit']as num).toDouble();
+    totalLoss = (json['total_loss']as num).toDouble();
+    userAadharNumber = json['userAadharNumber'];
+    List<PortfolioModel> parsedList = [];
+    if (json['portfolio_list'] != null) {
+      final data = json['portfolio_list'] as Map;
+      parsedList = data.entries.map((e) {
+        return PortfolioModel.fromJson(Map<String, dynamic>.from(e.value));
+      }).toList();
+    }
+    portfolioList = parsedList;
   }
 
   Map<String, dynamic> toJson(){
@@ -68,6 +97,16 @@ class UserModel {
     data['todayLoss'] = todayLoss;
     data['overallGainOrLoss'] = overallGainOrLoss;
     data['mobileNumber'] = mobileNumber;
+    data['limit_value'] = limitValue;
+    data['position_value'] = positionValue;
+    data['total_profit'] = totalProfit;
+    data['total_loss'] = totalLoss;
+    data['userAadharNumber'] = userAadharNumber;
+    if (portfolioList != null) {
+      data['portfolio_list'] =  Map.fromEntries(
+        portfolioList!.map((e) => MapEntry(e.id, e.toJson()))
+      );
+    }
     return data;
   }
 

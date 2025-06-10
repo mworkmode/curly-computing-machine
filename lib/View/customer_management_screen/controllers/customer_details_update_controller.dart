@@ -25,6 +25,13 @@ class CustomerDetailsUpdateController extends GetxController{
   final todayLossController = TextEditingController();
   final overallGainOrLossController = TextEditingController();
 
+  final aadharController = TextEditingController();
+  final limitValueController = TextEditingController();
+  final positionValueController = TextEditingController();
+  final completeProfitController = TextEditingController();
+  final completeLossController = TextEditingController();
+
+
   final formKey = GlobalKey<FormState>();
   RxBool obscured = true.obs;
   RxBool isLoading = false.obs;
@@ -57,6 +64,11 @@ class CustomerDetailsUpdateController extends GetxController{
       todayGainController.text = userData.todayGain.toString();
       todayLossController.text = userData.todayLoss.toString();
       overallGainOrLossController.text = userData.overallGainOrLoss.toString();
+      aadharController.text = userData.userAadharNumber.toString();
+      limitValueController.text = userData.limitValue.toString();
+      positionValueController.text = userData.positionValue.toString();
+      completeProfitController.text = userData.totalProfit.toString();
+      completeLossController.text = userData.totalLoss.toString();
     }
   }
 
@@ -77,6 +89,12 @@ class CustomerDetailsUpdateController extends GetxController{
       overallGainOrLoss: double.parse(overallGainOrLossController.text.toString().trim()),
       dollarPrice: userData.dollarPrice,
       mobileNumber: mobileNumberController.text.toString().trim(),
+      limitValue: double.parse(limitValueController.text.toString().trim()),
+      portfolioList: userData.portfolioList,
+      positionValue: double.parse(positionValueController.text.toString().trim()),
+      totalLoss: double.parse(completeLossController.text.toString().trim()),
+      totalProfit: double.parse(completeProfitController.text.toString().trim()),
+      userAadharNumber: aadharController.text.toString().trim()
     );
     updateUserData(userId, userDataUpdated.toJson());
   }

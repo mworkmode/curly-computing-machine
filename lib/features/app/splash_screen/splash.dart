@@ -62,13 +62,12 @@ class _SplashState extends State<Splash> {
                           vertical: myHeight * 0.013),
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-
                         children: [
                           Text(
-                            'CREATE PORTFOLITO  ',
+                            'CREATE PORTFOLIO  ',
 
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
                               fontWeight: FontWeight.normal,
                             ),
                           ),

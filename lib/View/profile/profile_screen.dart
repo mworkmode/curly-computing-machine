@@ -18,11 +18,14 @@ class ProfileScreen extends StatelessWidget {
    ProfileScreen({super.key});
 
   final NavBarController controller = Get.put(NavBarController());
+   static const darkBg = Color(0xFF121212);
+   static const cardColor = Color(0xFF1E1E1E);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: CustomColors.secondaryColor,
+
+        backgroundColor: darkBg,
         floatingActionButton: Container(
           decoration: BoxDecoration(
             color: Colors.white,
@@ -113,11 +116,11 @@ class ProfileScreen extends StatelessWidget {
                       height: 70,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: cardColor,
                           borderRadius: BorderRadius.circular(12),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
+                              color: AppColor.gray.withValues(alpha: 0),
                               spreadRadius: 2,
                               blurRadius: 5,
                               offset: const Offset(0, 2),
@@ -125,7 +128,7 @@ class ProfileScreen extends StatelessWidget {
                           ],
                         ),
                         child: Padding(
-                          padding: EdgeInsets.only(left: 15),
+                          padding: const EdgeInsets.only(left: 15),
                           child: Row(
                             children: [
                               const FaIcon(
@@ -140,19 +143,21 @@ class ProfileScreen extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Text(
+                                      const Text(
                                         'Name',
                                         style: TextStyle(
                                           fontSize: 15,
+                                          color: Colors.white,
                                           fontWeight: FontWeight.normal,
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(top: 5),
+                                        padding: const EdgeInsets.only(top: 5),
                                         child: Text(
                                           controller.userData?.value.userName?.capitalizeFirst ?? '',
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 16,
+                                            color: Colors.white,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -172,11 +177,11 @@ class ProfileScreen extends StatelessWidget {
                       height: 70,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: cardColor,
                           borderRadius: BorderRadius.circular(12),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
+                              color: Colors.grey.withValues(alpha: 0),
                               spreadRadius: 2,
                               blurRadius: 5,
                               offset: const Offset(0, 2),
@@ -184,34 +189,36 @@ class ProfileScreen extends StatelessWidget {
                           ],
                         ),
                         child: Padding(
-                          padding: EdgeInsets.only(left: 15),
+                          padding: const EdgeInsets.only(left: 15),
                           child: Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.mail_rounded,
                                 color: CustomColors.primaryColor,
                                 size: 28,
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsets.only(top: 8, left: 25),
+                                  padding: const EdgeInsets.only(top: 8, left: 25),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Text(
+                                      const Text(
                                         'Email',
                                         style: TextStyle(
                                           fontSize: 15,
+                                          color: Colors.white,
                                           fontWeight: FontWeight.normal,
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(top: 5),
+                                        padding: const EdgeInsets.only(top: 5),
                                         child: Text(
                                           controller.userData?.value.userEmail ?? '',
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 16,
+                                            color: Colors.white,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -231,11 +238,11 @@ class ProfileScreen extends StatelessWidget {
                     height: 70,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: cardColor,
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
+                            color: Colors.grey.withValues(alpha: 0),
                             spreadRadius: 2,
                             blurRadius: 5,
                             offset: const Offset(0, 2),
@@ -243,34 +250,36 @@ class ProfileScreen extends StatelessWidget {
                         ],
                       ),
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15),
+                        padding: const EdgeInsets.only(left: 15),
                         child: Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.perm_contact_cal_rounded,
                               color: CustomColors.primaryColor,
                               size: 28,
                             ),
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsets.only(top: 8, left: 25),
+                                padding: const EdgeInsets.only(top: 8, left: 25),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Contact',
                                       style: TextStyle(
                                         fontSize: 15,
+                                        color: Colors.white,
                                         fontWeight: FontWeight.normal,
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(top: 5),
+                                      padding: const EdgeInsets.only(top: 5),
                                       child: Text(
                                         controller.userData?.value.mobileNumber ?? '',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 16,
+                                          color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -291,11 +300,11 @@ class ProfileScreen extends StatelessWidget {
                     height: 70,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: cardColor,
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
+                            color: Colors.grey.withValues(alpha: 0),
                             spreadRadius: 2,
                             blurRadius: 5,
                             offset: const Offset(0, 2),
@@ -303,34 +312,36 @@ class ProfileScreen extends StatelessWidget {
                         ],
                       ),
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15),
+                        padding: const EdgeInsets.only(left: 15),
                         child: Row(
                           children: [
-                            FaIcon(
+                            const FaIcon(
                               FontAwesomeIcons.buildingColumns,
                               color: CustomColors.primaryColor,
                               size: 28,
                             ),
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsets.only(top: 8, left: 25),
+                                padding: const EdgeInsets.only(top: 8, left: 25),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Account',
                                       style: TextStyle(
                                         fontSize: 15,
+                                        color: Colors.white,
                                         fontWeight: FontWeight.normal,
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(top: 5),
+                                      padding: const EdgeInsets.only(top: 5),
                                       child: Text(
                                         controller.userData?.value.userAccountNumber ?? '',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 16,
+                                          color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -343,6 +354,68 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                     )
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+                  child: SizedBox(
+                      height: 70,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: cardColor,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withValues(alpha: 0),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Row(
+                            children: [
+                              const FaIcon(
+                                FontAwesomeIcons.idCard,
+                                color: CustomColors.primaryColor,
+                                size: 28,
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 8, left: 25),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        'Aadhar',
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 5),
+                                        child: Text(
+                                          controller.userData?.value.userAadharNumber ?? '',
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
                   ),
                 ),
                 // Padding(

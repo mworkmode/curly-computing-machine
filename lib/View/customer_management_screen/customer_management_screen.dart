@@ -1,5 +1,5 @@
 import 'package:crypto_app/View/customer_management_screen/controllers/customer_listing_controller.dart';
-import 'package:crypto_app/View/customer_management_screen/customer_details_update.dart';
+import 'package:crypto_app/View/customer_management_screen/customer_profile_update.dart';
 import 'package:crypto_app/helper/functions.dart';
 import 'package:crypto_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -162,9 +162,12 @@ class CustomerManagementScreen extends StatelessWidget {
                           child: InkWell(
                             splashColor: Colors.grey.shade100,
                             onTap: () {
-                              Get.to(()=>CustomerDetailsUpdate(),arguments: {
+                              Get.to(()=>const CustomerProfileUpdate(),arguments: {
                                 'user': controller.userList.value[index]
                               });
+                              // Get.to(()=>CustomerDetailsUpdate(),arguments: {
+                              //   'user': controller.userList.value[index]
+                              // });
                             },
                             child: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
@@ -205,39 +208,106 @@ class CustomerManagementScreen extends StatelessWidget {
                                   ),
                                   IconButton(
                                     onPressed: () {
-                                      Get.bottomSheet(
+                                      showBottomSheet(
+                                        context: context,
                                         backgroundColor: Colors.white,
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            const SizedBox(height: 20,),
-                                            const Icon(Icons.delete_forever,size: 120,),
-                                            const SizedBox(height: 10,),
-                                            const Text(
-                                              'Are you sure you want to delete?',
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
+                                        builder: (context) {
+                                          return TapRegion(
+                                            onTapOutside: (event) => Navigator.pop(context),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius: const BorderRadius.vertical(top: Radius.circular(60.0)),
+                                                border: const Border(top: BorderSide(color: Colors.black12)),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey.shade500,
+                                                    offset: const Offset(4, 4),
+                                                    blurRadius: 15,
+                                                    spreadRadius: 0.5,
+                                                  ),
+                                                  const BoxShadow(
+                                                    color: Colors.white,
+                                                    offset: Offset(-4, -4),
+                                                    blurRadius: 15,
+                                                    spreadRadius: 1,
+                                                  ),
+                                                ],
+                                              ),
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  const SizedBox(height: 20,),
+                                                  ClipRRect(
+                                                    borderRadius: BorderRadius.circular(10),
+                                                    child: ColoredBox(
+                                                      color: Colors.grey[300]!,
+                                                      child: const SizedBox(width: 40, height: 5),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 20,),
+                                                  const Icon(Icons.delete_forever,size: 120,),
+                                                  const SizedBox(height: 10,),
+                                                  const Text(
+                                                    'Are you sure you want to delete?',
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 10,),
+                                                  Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                    // mainAxisSize: MainAxisSize.min,
+                                                    children: [
+                                                      _buttonWidget('Cancel',() {
+                                                        Navigator.pop(context);
+                                                      },AppColor.lightGrey),
+                                                      _buttonWidget('Delete',() {
+
+                                                      },null),
+                                                    ],
+                                                  ),
+                                                  const SizedBox(height: 20,),
+                                                ],
                                               ),
                                             ),
-                                            const SizedBox(height: 10,),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                              // mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                _buttonWidget('Cancel',() {
-            
-                                                },AppColor.lightGrey),
-                                                _buttonWidget('Delete',() {
-            
-                                                },null),
-                                              ],
-                                            ),
-                                            const SizedBox(height: 20,),
-                                          ],
-                                        )
+                                          );
+                                        },
                                       );
+                                      // Get.bottomSheet(
+                                      //   backgroundColor: Colors.white,
+                                      //   Column(
+                                      //     crossAxisAlignment: CrossAxisAlignment.center,
+                                      //     mainAxisSize: MainAxisSize.min,
+                                      //     children: [
+                                      //       const SizedBox(height: 20,),
+                                      //       const Icon(Icons.delete_forever,size: 120,),
+                                      //       const SizedBox(height: 10,),
+                                      //       const Text(
+                                      //         'Are you sure you want to delete?',
+                                      //         style: TextStyle(
+                                      //           fontSize: 16,
+                                      //           fontWeight: FontWeight.bold,
+                                      //         ),
+                                      //       ),
+                                      //       const SizedBox(height: 10,),
+                                      //       Row(
+                                      //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      //         // mainAxisSize: MainAxisSize.min,
+                                      //         children: [
+                                      //           _buttonWidget('Cancel',() {
+                                      //
+                                      //           },AppColor.lightGrey),
+                                      //           _buttonWidget('Delete',() {
+                                      //
+                                      //           },null),
+                                      //         ],
+                                      //       ),
+                                      //       const SizedBox(height: 20,),
+                                      //     ],
+                                      //   )
+                                      // );
                                     },
                                     icon: const Icon(
                                       Icons.delete,

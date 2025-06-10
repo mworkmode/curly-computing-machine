@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:crypto_app/Model/user_model.dart';
 import 'package:crypto_app/View/login/login_page.dart';
 import 'package:crypto_app/utils/app_utils.dart';
@@ -19,6 +21,7 @@ class RegistrationController extends GetxController {
   final accountNumberController = TextEditingController();
   final ifscNumberController = TextEditingController();
   final mobileNumberController = TextEditingController();
+  final aadharController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   RxBool isLoading = false.obs;
@@ -56,8 +59,14 @@ class RegistrationController extends GetxController {
           totalValue: 0,
           overallGainOrLoss: 0,
           dollarPrice: 0,
+          limitValue: 0,
+          positionValue: 0,
+          totalProfit: 0,
+          totalLoss: 0,
           mobileNumber: mobileNumberController.text.toString().trim(),
+          userAadharNumber: aadharController.text.toString().trim(),
         );
+        log('Mayur : ${userData.toJson()}');
         ref.child(userId).set(userData.toJson()).then((value) async {
           isLoading.value = false;
           AppUtils.showSnackBar(title: 'Registration Successful', message: 'Please login!');

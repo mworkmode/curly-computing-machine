@@ -3,6 +3,7 @@ import 'package:crypto_app/View/io.dart';
 import 'package:crypto_app/utils/app_utils.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
 import '../../services/storage_service.dart';
@@ -17,6 +18,35 @@ class LoginController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   UserModel? userData;
+  final _secureStorage = const FlutterSecureStorage();
+  final RxBool rememberMe = false.obs;
+
+  @override
+  void onInit() {
+    _loadSavedLogin();
+    super.onInit();
+  }
+
+  void _loadSavedLogin() async {
+    String? savedEmail = await _secureStorage.read(key: 'email');
+    String? savedPassword = await _secureStorage.read(key: 'password');
+    String? rememberMeFlag = await _secureStorage.read(key: 'remember_me');
+    if (rememberMeFlag == 'true') {
+      rememberMe.value = true;
+      emailController.text = savedEmail ?? '';
+      passwordController.text = savedPassword ?? '';
+    }
+  }
+
+  Future<void> _handleRememberMe() async {
+    if (rememberMe.value) {
+      await _secureStorage.write(key: 'email', value: emailController.text);
+      await _secureStorage.write(key: 'password', value: passwordController.text);
+      await _secureStorage.write(key: 'remember_me', value: 'true');
+    } else {
+      await _secureStorage.deleteAll(); // Or selectively delete
+    }
+  }
 
   Future<UserModel?> login() async {
     isLoading.value = true;
@@ -39,6 +69,7 @@ class LoginController extends GetxController {
       emailExists = true;
       userData = userObj;
       await storageService.saveUser(userObj);
+      await _handleRememberMe();
       isLoading.value = false;
       Get.delete<LoginController>();
       Get.offAll(() => const IO());

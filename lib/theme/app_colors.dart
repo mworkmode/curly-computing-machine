@@ -14,5 +14,7 @@ class AppColor {
   static const Color kAppGreen = Colors.green;
   static const Color kAppRed = Colors.red;
   static const Color kAppSecondary = Color(0xfffdd85a);
+  static const Color kAppDarkGray = Color(0xff363636);
+  static const Color tileColor = Color(0xff6c6c6c);
 
 }

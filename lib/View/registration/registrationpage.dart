@@ -136,6 +136,26 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   const SizedBox(height: 15,),
                   TextFormFieldLabel(
                     padding: const EdgeInsets.symmetric(horizontal: 0),
+                    lebelText: 'Aadhar Number',
+                    lebelFontColor: const Color(0xff1A1A1A),
+                    borderRadius: BorderRadius.circular(10.0),
+                    hint: 'Aadhar Number',
+                    controller: controller.aadharController,
+                    validating: (value) {
+                      if (value!.isEmpty) {
+                        return 'Enter aadhar number';
+                      }
+                      if (value.length < 12) {
+                        return 'Enter a valid aadhar number';
+                      }
+                      return null;
+                    },
+                    textCapitalization: TextCapitalization.none,
+                    keyboardType: TextInputType.number,
+                  ),
+                  const SizedBox(height: 15,),
+                  TextFormFieldLabel(
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
                     lebelText: 'Account Number',
                     lebelFontColor: const Color(0xff1A1A1A),
                     borderRadius: BorderRadius.circular(10.0),

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:crypto_app/Model/user_model.dart';
@@ -66,6 +67,9 @@ class CustomerListingController extends GetxController{
       userList.value = data.values.map((user) {
         return UserModel.fromJson(Map<String, dynamic>.from(user));
       }).toList();
+
+      log('dsdlkjfslf 1: ${jsonEncode(data.values.first).toString()}');
+      log('dsdlkjfslf 2: ${userList[0].portfolioList.toString()}');
     });
   }
 }

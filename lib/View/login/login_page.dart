@@ -1,6 +1,7 @@
 import 'package:crypto_app/View/login/login_controller.dart';
 import 'package:crypto_app/constants/custom_form_button.dart';
 import 'package:crypto_app/constants/custom_input_field.dart';
+import 'package:crypto_app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -98,7 +99,25 @@ class _LoginPageState extends State<LoginPage> {
                             }
                           },
                         ),
-                        const SizedBox(height: 30,),
+                        const SizedBox(height: 10,),
+                        Row(
+                          children: [
+                            Obx(()=>
+                              Checkbox(
+                                value: controller.rememberMe.value,
+                                activeColor: AppColor.kAppPrimary,
+                                checkColor: Colors.black,
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    controller.rememberMe.value = value ?? false;
+                                  });
+                                },
+                              ),
+                            ),
+                            const Text("Remember Me"),
+                          ],
+                        ),
+                        const SizedBox(height: 20,),
                         Obx(()=> CustomFormButton(innerText: controller.isLoading.value ? 'Signing In...' : 'Sign In',
                             onPressed: controller.isLoading.value ? (){} : () => _handleLoginUser(context))),
                         const SizedBox(height: 16,),
